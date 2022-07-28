@@ -27,6 +27,9 @@ urlpatterns = [
 
     # Health checks:
     path('health/', include(health_urls)),
+    
+    # Django allauth:
+    path('accounts/', include('allauth.urls')),
 
     # django-admin:
     path('admin/doc/', include(admindocs_urls)),

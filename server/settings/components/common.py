@@ -24,12 +24,14 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 INSTALLED_APPS: Tuple[str, ...] = (
     # Your apps go here:
     'server.apps.main',
+    'server.apps.core',
 
     # Default django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     # django-admin:
@@ -38,6 +40,11 @@ INSTALLED_APPS: Tuple[str, ...] = (
 
     # Security:
     'axes',
+    
+    # django allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # Health checks:
     # You may want to enable other checks as well,
@@ -167,6 +174,7 @@ MEDIA_ROOT = BASE_DIR.joinpath('media')
 AUTHENTICATION_BACKENDS = (
     'axes.backends.AxesBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 PASSWORD_HASHERS = [
@@ -204,3 +212,9 @@ EMAIL_TIMEOUT = 5
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+#  Site ID
+SITE_ID = 1
+
+
+AUTH_USER_MODEL = 'core.User'
